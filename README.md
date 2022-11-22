@@ -14,6 +14,7 @@ Each task is linked and will help you to:
 * create the first abstracted storage engine of the project: File storage.
 * create all unittests to validate all our classes and storage engine
 ## Resources:books:
+#### Read or watch:
 * [cmd module](https://docs.python.org/3.8/library/cmd.html)
 * [uuid module](https://docs.python.org/3.8/library/uuid.html)
 * [datetime](https://docs.python.org/3.8/library/datetime.html)
@@ -33,3 +34,5 @@ At the end of this project, you are expected to be able to [explain to anyone](h
 * What is *args and how to use it
 * What is **kwargs and how to use it
 * How to handle named arguments in a function
+## Requirements 
+### Python Scripts 
