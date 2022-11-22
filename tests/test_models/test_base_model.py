@@ -24,3 +24,7 @@ class TestDocs(unittest.TestCase):
     def setUpClass(cls):
         """Testing class"""
         cls.base_funcs = inspect.getmembers(BaseModel, inspect.isfunction)
+
+    def test_module_docstring(self):
+        """module docstring length"""
+        self.assertTrue(len(BaseModel.__doc__) >= 1)
