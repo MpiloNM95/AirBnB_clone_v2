@@ -13,3 +13,11 @@ class BaseModel:
 
      def __init__(self, *args, **kwargs):
          """Initialization of Class"""
+
+         if kwargs:
+             for keys, values in kwargs.items():
+                 if keys != "__class__":
+                     if keys == "created_at" or keys == "updated_at":
+                         values = datetime.strptime(values,
+                                                    "%Y-%m-%dT%H:%M:%S.%f")
+                         setattr(self, keys, values)
