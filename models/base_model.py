@@ -21,3 +21,13 @@ class BaseModel:
                          values = datetime.strptime(values,
                                                     "%Y-%m-%dT%H:%M:%S.%f")
                          setattr(self, keys, values)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.today()
+            self.updated_at = datetime.today()
+            models.storage.new(self)
+
+    def __str__(self):
+        """ String Representation """
+        return ("[{}] ({}) {}".format(self.__class__.__name__,
+                                      self.id, self.__dict__))
