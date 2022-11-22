@@ -41,3 +41,8 @@ class TestBaseModel(unittest.TestCase):
         """Test all the attributes"""
         bmodel_1 = BaseModel()
         bmodel_2 = BaseModel()
+        # test if id is string
+        self.assertIsInstance(bmodel_1.id, str)
+        # test not equal id
+        self.assertNotEqual(bmodel_1.id, bmodel_2.id)
+        # test if created_at is datetime
