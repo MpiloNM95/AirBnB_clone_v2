@@ -46,3 +46,10 @@ class TestBaseModel(unittest.TestCase):
         # test not equal id
         self.assertNotEqual(bmodel_1.id, bmodel_2.id)
         # test if created_at is datetime
+        self.assertIsInstance(bmodel_1.created_at, datetime)
+        # test if update_at is datetime
+        self.assertIsInstance(bmodel_1.updated_at, datetime)
+        # test if type is object
+        self.assertTrue(type(bmodel_1), object)
+        # test if it's a Basemodel instance
+        self.assertTrue(isinstance(bmodel_1, BaseModel))
