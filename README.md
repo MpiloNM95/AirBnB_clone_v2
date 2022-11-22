@@ -107,3 +107,7 @@ At the end of this project, you are expected to be able to [explain to anyone](h
   'print(__import__("my_module").my_function.__doc__)' and python3 -c
   'print(__import__("my_module").MyClass.my_function.__doc__)')
 * We strongly encourage you to work together on test cases, so that you don’t miss any edge case
+---
+
+## Authors
+[Mpilo Mafu](https://github.com/MpiloNM95)
