@@ -17,6 +17,7 @@ class Test_pep8(unittest.TestCase):
         self.assertEqual(result.total_errors, 0,
                 "Found code style errors (and warnings).")
 
+
 class TestDocs(unittest.TestCase):
     """Base model document tests"""
 
@@ -32,3 +33,11 @@ class TestDocs(unittest.TestCase):
     def test_class_docstring(self):
         """Class docstring length"""
         self.assertTrue(len(BaseModel.__doc__) >= 1)
+
+
+class TestBaseModel(unittest.TestCase):
+    """ Tests The base model functions """
+    def test_Attributes(self):
+        """Test all the attributes"""
+        bmodel_1 = BaseModel()
+        bmodel_2 = BaseModel()
