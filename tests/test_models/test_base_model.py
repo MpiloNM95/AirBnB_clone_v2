@@ -53,3 +53,8 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(type(bmodel_1), object)
         # test if it's a Basemodel instance
         self.assertTrue(isinstance(bmodel_1, BaseModel))
+
+    def test_BaseModel_None(self):
+        # test setting None as attribute
+        bmodel_3 = BaseModel(None)
+        self.assertNotIn(None, bmodel_3.__dict__.values())
