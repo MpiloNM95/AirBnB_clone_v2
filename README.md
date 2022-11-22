@@ -3,6 +3,45 @@
 This is the first part of the AirBnB clone project for ALX Africa in this case we need to create the consolethat will be used for testing and manage objects of our project.
 ## How to start the console ##
 for start the console you can do it on an interactive mode using ```./console.py``` or on an non-interactivemode using ```echo "command" | ./console.py```(where command is the command that will be passed)
+
+For Example
+
+#### Interactive form
+```
+$ ./console.py
+(hbnb) help
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+
+(hbnb) 
+(hbnb) 
+(hbnb) quit
+$
+```
+#### Non-interactive form
+```
+$ echo "help" | ./console.py
+(hbnb)
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+(hbnb) 
+$
+$ cat test_help
+help
+$
+$ cat test_help | ./console.py
+(hbnb)
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+(hbnb) 
+$
+```
 ### First step: Write a command interpreter to manage your AirBnB objects.
 This is the first step towards building your first full web application: the AirBnB clone. This first step is very important because you will use what you build during this project with all other following projects: HTML/CSS templating, database storage, API, front-end integration…
 
@@ -34,7 +73,6 @@ At the end of this project, you are expected to be able to [explain to anyone](h
 * What is *args and how to use it
 * What is **kwargs and how to use it
 * How to handle named arguments in a function
----
 ## Requirements  
 ### Python Scripts
 * Allowed editors: vi, vim, emacs
