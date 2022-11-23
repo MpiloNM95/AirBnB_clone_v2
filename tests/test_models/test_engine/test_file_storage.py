@@ -53,3 +53,10 @@ class Test_FileStorage(unittest.TestCase):
     def test_file_path(self):
         """testing file path"""
         self.assertEqual(str, type(FileStorage._FileStorage__file_path))
+
+    def test_All(self):
+        """Test the FileStorage method itself using example """
+        object_1 = FileStorage()
+        object_data = object_1.all()
+        self.assertIsNotNone(object_data)
+        self.assertEqual(type(object_data), dict)
