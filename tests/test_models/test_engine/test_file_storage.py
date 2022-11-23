@@ -60,3 +60,12 @@ class Test_FileStorage(unittest.TestCase):
         object_data = object_1.all()
         self.assertIsNotNone(object_data)
         self.assertEqual(type(object_data), dict)
+
+    def test_FileStorage_1(self):
+        """Tests the FileStorage again"""
+        my_model = FileStorage()
+        my_model.name = "AlxAfrica"
+        my_model.my_number = 89
+        self.assertEqual(str(type(FileStorage)), "<class 'type'>")
+        self.assertTrue(isinstance(my_model, FileStorage))
+        self.assertTrue(type(my_model), object)
