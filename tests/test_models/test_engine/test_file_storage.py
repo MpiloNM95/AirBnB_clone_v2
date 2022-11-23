@@ -39,3 +39,8 @@ class Test_FileStorage(unittest.TestCase):
             FileStorage("89")
         with self.assertRaises(TypeError):
             FileStorage(None)
+
+    def test_is_an_instance(self):
+        """function test_is_an_instance"""
+        my_model = FileStorage()
+        self.assertIsInstance(my_model, FileStorage)
