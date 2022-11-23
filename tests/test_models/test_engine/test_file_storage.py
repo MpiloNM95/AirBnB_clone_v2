@@ -23,3 +23,10 @@ class Test_pep8(unittest.TestCase):
         result = pep8style.check_files(['models/engine/file_storage.py'])
         self.assertEqual(result.total_errors, 0,
                           "Found code style errors (and warnings).")
+
+
+class Test_FileStorage(unittest.TestCase):
+    """Test the FileStorage"""
+    def test_docstring(self):
+        """module docstring length"""
+        self.assertTrue(len(FileStorage.__doc__) >= 1)
