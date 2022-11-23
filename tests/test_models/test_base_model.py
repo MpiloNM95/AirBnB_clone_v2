@@ -58,3 +58,11 @@ class TestBaseModel(unittest.TestCase):
         # test setting None as attribute
         bmodel_3 = BaseModel(None)
         self.assertNotIn(None, bmodel_3.__dict__.values())
+
+    def test_save0(self):
+        """Test of the save method"""
+        bmodel_2 = BaseModel()
+        bmodel_2.save()
+        bmodel_2id = "BaseModel." + bmodel_2.id
+        with open("file.json", "r") as f:
+            self.assertIn(bmodel_2id, f.read())
