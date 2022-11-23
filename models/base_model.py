@@ -31,3 +31,8 @@ class BaseModel:
         """ String Representation """
         return ("[{}] ({}) {}".format(self.__class__.__name__,
                                       self.id, self.__dict__))
+
+    def save(self):
+        """ updates the public instance attribute with the current datetime """
+        self.updated_at = datetime.today()
+        models.storage.save()
