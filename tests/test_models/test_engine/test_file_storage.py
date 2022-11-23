@@ -44,3 +44,9 @@ class Test_FileStorage(unittest.TestCase):
         """function test_is_an_instance"""
         my_model = FileStorage()
         self.assertIsInstance(my_model, FileStorage)
+
+    def test_storage(self):
+        """testing storage"""
+        self.assertIsInstance(storage, FileStorage)
+        self.assertEqual(type(storage), FileStorage)
+
