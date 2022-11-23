@@ -73,3 +73,17 @@ class TestBaseModel(unittest.TestCase):
         bmodel_4.first_name = "Mpilo"
         bmodel_4.save()
         self.assertNotEqual(bmodel_4.created_at, bmodel_4.updated_at)
+
+    def test_to_dict(self):
+        """Test of the to_dict function"""
+        bmodel_5 = BaseModel()
+        dictionary_5 = bmodel_5.to_dict()
+        # test the dict type
+        self.assertIsInstance(dictionary_5, dict)
+        # test for the dict instances
+        self.assertEqual(bmodel_5.to_dict()["id"], bmodel_5.id)
+        self.assertEqual(bmodel_5.to_dict()["__class__"], "BaseModel")
+        # test if the dictionary updates
+        bmodel_5.save()
+        dict_2 = bmodel_5.to_dict()
+        self.assertNotEqual(dictionary_5["updated_at"], dict_2["updated_at"])
