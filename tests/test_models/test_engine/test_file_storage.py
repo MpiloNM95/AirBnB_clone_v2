@@ -30,3 +30,12 @@ class Test_FileStorage(unittest.TestCase):
     def test_docstring(self):
         """module docstring length"""
         self.assertTrue(len(FileStorage.__doc__) >= 1)
+
+    def test_FileStorage_arg(self):
+        """testing file storage with an argument"""
+        with self.assertRaises(TypeError):
+            FileStorage("AlxAfrica")
+        with self.assertRaises(TypeError):
+            FileStorage("89")
+        with self.assertRaises(TypeError):
+            FileStorage(None)
