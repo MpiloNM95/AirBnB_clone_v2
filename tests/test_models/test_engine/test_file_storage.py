@@ -69,3 +69,10 @@ class Test_FileStorage(unittest.TestCase):
         self.assertEqual(str(type(FileStorage)), "<class 'type'>")
         self.assertTrue(isinstance(my_model, FileStorage))
         self.assertTrue(type(my_model), object)
+
+    def test_reload(self):
+        """tests the reload"""
+        if not path.exists("file.json"):
+            new_file = FileStorage()
+            new_base = BaseModel(id="123", created_at="2022-11-23T19:03:10.78",
+                                 updated_at="2022-11-23T19:03:10.78")
