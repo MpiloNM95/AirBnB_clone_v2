@@ -66,3 +66,10 @@ class TestBaseModel(unittest.TestCase):
         bmodel_2id = "BaseModel." + bmodel_2.id
         with open("file.json", "r") as f:
             self.assertIn(bmodel_2id, f.read())
+
+    def test_save1(self):
+        """Another Test of the save method"""
+        bmodel_4 = BaseModel()
+        bmodel_4.first_name = "Mpilo"
+        bmodel_4.save()
+        self.assertNotEqual(bmodel_4.created_at, bmodel_4.updated_at)
