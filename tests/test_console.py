@@ -19,3 +19,13 @@ class Test_pep8(unittest.TestCase):
         result = pep8style.check_files(['tests/test_console.py'])
         self.assertEqual(result.total_errors, 0,
                 "Found code style errors (and warnings).")
+
+
+class Test_Console(unittest.TestCase):
+    """Tests the entire console"""
+
+    def test_prompt(self):
+        """tests the prompt"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            expected = HBNBCommand.prompt
+            self.assertEqual(expected, "(hbnb) ")
