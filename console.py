@@ -22,3 +22,7 @@ class HBNBCommand(cmd.Cmd):
         """Exits on EOF"""
         print()
         return True
+
+    def do_quit(self, line):
+        """exits when typing quit"""
+        return True
