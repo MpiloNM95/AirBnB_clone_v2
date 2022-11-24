@@ -58,3 +58,10 @@ class Test_Console(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(HBNBCommand().onecmd("help quit"))
             self.assertEqual(out, f.getvalue().strip())
+
+    def test_help_emptyline(self):
+        """Test empty line"""
+        out = ""
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("\n"))
+            self.assertEqual(out, f.getvalue().strip())
