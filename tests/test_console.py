@@ -136,3 +136,10 @@ class Test_Console(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(HBNBCommand().onecmd("destroy"))
             self.assertEqual(out, f.getvalue().strip())
+
+    def test_destroy_error(self):
+        """ Test destroy class error """
+        out = "** class doesn't exist **"
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("destroy asd"))
+            self.assertEqual(out, f.getvalue().strip())
