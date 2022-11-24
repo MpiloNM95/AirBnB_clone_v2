@@ -122,3 +122,10 @@ class Test_Console(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(HBNBCommand().onecmd("show BaseModel"))
             self.assertEqual(out, f.getvalue().strip())
+
+    def test_show_class_id_error(self):
+        """ Test id error """
+        out = "** no instance found **"
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("show BaseModel asdasd223"))
+            self.assertEqual(out, f.getvalue().strip())
