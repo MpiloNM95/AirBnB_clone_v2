@@ -74,3 +74,11 @@ class Test_Console(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(HBNBCommand().onecmd("help create"))
             self.assertEqual(out, f.getvalue().strip())
+
+    def test_help_show(self):
+        """Test the show help"""
+        out = """Prints the string representation of an instance
+        based on the class name"""
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("help show"))
+            self.assertEqual(out, f.getvalue().strip())
