@@ -93,3 +93,11 @@ class Test_Console(unittest.TestCase):
     def setup(self):
         """Set up tests."""
         storage.reload()
+
+    def test_create_BaseModel(self):
+        """ Test create a BaseModel """
+        out = "<class 'str'>"
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
+            xd = str(type(f.getvalue().strip()))
+            self.assertEqual(out, xd)
