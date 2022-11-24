@@ -15,6 +15,7 @@ class HBNBCommand(cmd.Cmd):
     an empty line + ENTER doesn't execute anything
     """
     prompt = "(hbnb) "
+    classes = {"BaseModel"}
     attributes = ["updated_at", "created_at", "id"]
     specs = ["\'", "\""]
 
@@ -30,3 +31,18 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """passing emptyline do nothing"""
         pass
+
+    def do_create(self, line):
+        """
+        Creates a new instance of BaseModel,
+        saves it (to the JSON file) and prints the id.
+        Ex: $ create BaseModel
+        """
+        if not line:
+            print("** class name missing **")
+            elif line not in self.classes:
+                print("** class doesn't exist **")
+            else: 
+                ew_item = eval(line)()
+                print(new_item.id)
+                new_item.save()
