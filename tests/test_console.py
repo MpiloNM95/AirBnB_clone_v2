@@ -38,3 +38,9 @@ class Test_Console(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(HBNBCommand().onecmd("help help"))
             self.assertEqual(out, f.getvalue().strip())
+
+    def test_help_EOF(self):
+        out = "Exits on EOF"
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("help EOF"))
+            self.assertEqual(out, f.getvalue().strip())
