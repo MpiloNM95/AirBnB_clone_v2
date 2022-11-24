@@ -101,3 +101,10 @@ class Test_Console(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
             xd = str(type(f.getvalue().strip()))
             self.assertEqual(out, xd)
+
+    def test_show_error(self):
+        """ Test only show error """
+        out = "** class doesn't exist **"
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("show asd"))
+            self.assertEqual(out, f.getvalue().strip())
