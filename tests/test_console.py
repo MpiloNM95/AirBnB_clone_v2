@@ -89,3 +89,7 @@ class Test_Console(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(HBNBCommand().onecmd("help destroy"))
             self.assertEqual(out, f.getvalue().strip())
+
+    def setup(self):
+        """Set up tests."""
+        storage.reload()
