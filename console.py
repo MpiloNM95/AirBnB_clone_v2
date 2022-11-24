@@ -17,3 +17,8 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
     attributes = ["updated_at", "created_at", "id"]
     specs = ["\'", "\""]
+
+    def do_EOF(self, line):
+        """Exits on EOF"""
+        print()
+        return True
