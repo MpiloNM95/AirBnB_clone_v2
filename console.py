@@ -60,3 +60,4 @@ class HBNBCommand(cmd.Cmd):
         elif len(comm) == 1:
             print("** instance id missing **")
             return
+        new_item = "{}.{}".format(comm[0], comm[1])
