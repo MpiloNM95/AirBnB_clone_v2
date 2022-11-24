@@ -29,3 +29,12 @@ class Test_Console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             expected = HBNBCommand.prompt
             self.assertEqual(expected, "(hbnb) ")
+
+    def test_help_help(self):
+        out1 = "List available commands with \""
+        out2 = "help\" or detailed help with \"help cmd\"."
+        out = out1 + out2
+        """tests the help"""
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("help help"))
+            self.assertEqual(out, f.getvalue().strip())
