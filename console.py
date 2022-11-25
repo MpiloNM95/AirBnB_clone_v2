@@ -84,3 +84,6 @@ class HBNBCommand(cmd.Cmd):
             new_item = "{}.{}".format(comm[0], comm[1])
             if new_item not in storage.all():
                 print("** no instance found **")
+            else:
+                storage.all().pop(new_item)
+                storage.save()
