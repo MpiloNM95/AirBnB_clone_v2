@@ -67,3 +67,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("[{}] ({}) {}".format(comm[0],
                                         comm[1], storage.all()[new_item]))
+
+    def do_destroy(self, line):
+        """method to delete an instance based on the class name and id"""
+        comm = line.split()
