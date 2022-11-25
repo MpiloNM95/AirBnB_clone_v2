@@ -126,4 +126,6 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         setattr(object[key], comm[2], str(comm[3]))
                     storage.save()
-
+            else:
+                print("** no instance found **")
+                return
