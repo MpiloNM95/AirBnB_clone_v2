@@ -33,3 +33,15 @@ class TestDocs(unittest.TestCase):
     def test_class_docstring(self):
         """Class docstring length"""
         self.assertTrue(len(User.__doc__) >= 1)
+
+
+class Test_user(unittest.TestCase):
+    """Tests the user module"""
+
+    def test_class(self):
+        """Test class"""
+        self.assertEqual(User.email, "")
+        self.assertEqual(User.password, "")
+        self.assertEqual(User.first_name, "")
+        self.assertEqual(User.last_name, "")
+        self.assertTrue(issubclass(User, BaseModel))
