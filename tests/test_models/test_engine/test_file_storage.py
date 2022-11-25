@@ -4,7 +4,7 @@ import json
 from models import storage
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
-from models.review import Review
+from models.user import User
 from os import path
 import pep8
 import unittest
@@ -71,3 +71,18 @@ class Test_FileStorage(unittest.TestCase):
             new_file = FileStorage()
             new_base = BaseModel(id="123", created_at="2022-11-23T19:03:10.78",
                                  updated_at="2022-11-23T19:03:10.78")
+
+    def test_reload_with_arg(self):
+        with self.assertRaises(TypeError):
+            storage.reload(None)
+
+    def test_save(self):
+        '''Test save method'''
+        objs = storage
+        new_base = BaseModel()
+        new_user = User()
+        objs.new(new_base)
+        objs.new(new_user)
+        objs.save()
+        save_text = ""
+        with open("file.json", "r") as f:
