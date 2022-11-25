@@ -99,4 +99,10 @@ class Test_FileStorage(unittest.TestCase):
          new_file.new(new_base)
          new_file.new(new_user)
          objs = new_file.all()
+         key = new_base.__class__.__name__ + "." + new_base.__dict__["id"]
+         key_user = new_user.__class__.__name__ + "." + new_user.__dict__["id"]
+         self.assertIn(key, objs)
+         self.assertIn(key_user, objs)
 
+if __name__ == '__main__':
+    unittest.main()
