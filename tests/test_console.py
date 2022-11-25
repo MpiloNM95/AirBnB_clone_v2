@@ -5,6 +5,7 @@ from console import HBNBCommand
 from models import storage
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
+from models.user import User
 import pep8
 from unittest.mock import patch
 from io import StringIO
@@ -99,6 +100,14 @@ class Test_Console(unittest.TestCase):
         out = "<class 'str'>"
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
+            xd = str(type(f.getvalue().strip()))
+            self.assertEqual(out, xd)
+
+    def test_create_User(self):
+        """ Test create a User """
+        out = "<class 'str'>"
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create User"))
             xd = str(type(f.getvalue().strip()))
             self.assertEqual(out, xd)
 
