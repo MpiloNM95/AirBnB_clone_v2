@@ -87,3 +87,8 @@ class HBNBCommand(cmd.Cmd):
             else:
                 storage.all().pop(new_item)
                 storage.save()
+
+    def do_all(self, line):
+        """Prints all string representation of all instances"""
+        list_object = []
+        new_item = storage.all()
