@@ -123,4 +123,7 @@ class HBNBCommand(cmd.Cmd):
                 if comm[2] not in self.attributes:
                     if comm[3][0] in self.specs and comm[3][-1] in self.specs:
                         setattr(object[key], comm[2], str(comm[3][1: -1]))
-                    
+                    else:
+                        setattr(object[key], comm[2], str(comm[3]))
+                    storage.save()
+
