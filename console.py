@@ -116,3 +116,11 @@ class HBNBCommand(cmd.Cmd):
         elif len(comm) == 3:
             print("** value missing **")
             return
+        else:
+            object = storage.all()
+            key = comm[0] + "." + comm[1]
+            if key in object:
+                if comm[2] not in self.attributes:
+                    if comm[3][0] in self.specs and comm[3][-1] in self.specs:
+                        setattr(object[key], comm[2], str(comm[3][1: -1]))
+                    
