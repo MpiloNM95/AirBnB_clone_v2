@@ -92,3 +92,6 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances"""
         list_object = []
         new_item = storage.all()
+        if line and line not in self.classes:
+            print("** class doesn't exist **")
+            return
