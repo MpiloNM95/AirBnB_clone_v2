@@ -109,6 +109,13 @@ class Test_Console(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("create asdas"))
             self.assertEqual(out, f.getvalue().strip())
 
+     def test_create_error_two(self):
+         """ Test only create without class """
+         out = "** class name missing **"
+         with patch("sys.stdout", new=StringIO()) as f:
+             self.assertFalse(HBNBCommand().onecmd("create"))
+             self.assertEqual(out, f.getvalue().strip())
+
     def test_show_error(self):
         """ Test only show error """
         out = "** class doesn't exist **"
