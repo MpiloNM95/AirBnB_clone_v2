@@ -80,3 +80,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(comm) == 1:
             print("** instance id missing **")
             return
+        else:
+            new_item = "{}.{}".format(comm[0], comm[1])
+            if new_item not in storage.all():
+                print("** no instance found **")
