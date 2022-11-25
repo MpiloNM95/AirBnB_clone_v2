@@ -102,6 +102,13 @@ class Test_Console(unittest.TestCase):
             xd = str(type(f.getvalue().strip()))
             self.assertEqual(out, xd)
 
+    def test_create_error(self):
+        """ Test create a create class error """
+        out = "** class doesn't exist **"
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create asdas"))
+            self.assertEqual(out, f.getvalue().strip())
+
     def test_show_error(self):
         """ Test only show error """
         out = "** class doesn't exist **"
@@ -164,3 +171,5 @@ class Test_Console(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(HBNBCommand().onecmd("all asdas"))
             self.assertEqual(out, f.getvalue().strip())
+
+
