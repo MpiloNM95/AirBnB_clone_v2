@@ -110,3 +110,6 @@ class HBNBCommand(cmd.Cmd):
         elif comm[0] + "." + comm[1] not in storage.all().keys():
             print("** no instance found **")
             return
+        elif len(comm) == 2:
+            print("** attribute name missing **")
+            return
