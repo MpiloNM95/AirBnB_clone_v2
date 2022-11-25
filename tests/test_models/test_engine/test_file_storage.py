@@ -86,3 +86,17 @@ class Test_FileStorage(unittest.TestCase):
         objs.save()
         save_text = ""
         with open("file.json", "r") as f:
+            save_text = f.read()
+            self.assertIn("BaseModel." + new_base.id, save_text)
+            self.assertIn("User." + new_user.id, save_text)
+
+    def test_new(self):
+        '''Test new method'''
+         new_file = FileStorage()
+         new_base = BaseModel(id="123", created_at="2022-11-25T19:54:58.883036"
+                              updated_at="2022-11-25T19:54:58.883036")
+         new_user = User()
+         new_file.new(new_base)
+         new_file.new(new_user)
+         objs = new_file.all()
+
