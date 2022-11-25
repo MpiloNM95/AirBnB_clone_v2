@@ -3,6 +3,7 @@
 import cmd
 import json
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 
 
@@ -15,7 +16,7 @@ class HBNBCommand(cmd.Cmd):
     an empty line + ENTER doesn't execute anything
     """
     prompt = "(hbnb) "
-    classes = {"BaseModel"}
+    classes = {"BaseModel", "User"}
     attributes = ["updated_at", "created_at", "id"]
     specs = ["\'", "\""]
 
