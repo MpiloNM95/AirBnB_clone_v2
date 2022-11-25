@@ -95,3 +95,9 @@ class HBNBCommand(cmd.Cmd):
         if line and line not in self.classes:
             print("** class doesn't exist **")
             return
+    
+    def do_update(self, line):
+        """Updates an instance based on the class name and id"""
+        comm = line.split()
+        if not line:
+            print("** class name missing **")
