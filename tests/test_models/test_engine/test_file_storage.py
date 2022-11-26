@@ -6,6 +6,7 @@ from models.amenity import Amenity
 from models.base_model import BaseModel
 from models.city import City
 from models.engine.file_storage import FileStorage
+from models.place import Place
 from models.state import State
 from models.user import User
 from os import path
@@ -92,6 +93,7 @@ class Test_FileStorage(unittest.TestCase):
         new_base = BaseModel()
         new_user = User()
         new_state = State()
+        new_place = Place()
         new_city = City()
         new_city = Amenity()
         objs.new(new_base)
@@ -106,6 +108,7 @@ class Test_FileStorage(unittest.TestCase):
             self.assertIn("BaseModel." + new_base.id, save_text)
             self.assertIn("User." + new_user.id, save_text)
             self.assertIn("State." + new_state.id, save_text)
+            self.assertIn("Place." + new_place.id, save_text)
             self.assertIn("City." + new_city.id, save_text)
             self.assertIn("Amenity." + new_amenity.id, save_text)
 
