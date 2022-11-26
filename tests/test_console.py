@@ -5,6 +5,7 @@ from console import HBNBCommand
 from models import storage
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
+from models.city import City
 from models.state import State
 from models.user import User
 import pep8
@@ -109,6 +110,14 @@ class Test_Console(unittest.TestCase):
         out = "<class 'str'>"
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(HBNBCommand().onecmd("create User"))
+            xd = str(type(f.getvalue().strip()))
+            self.assertEqual(out, xd)
+
+    def test_create_city(self):
+        """ Test create a City """
+        out = "<class 'str'>"
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create City"))
             xd = str(type(f.getvalue().strip()))
             self.assertEqual(out, xd)
 
