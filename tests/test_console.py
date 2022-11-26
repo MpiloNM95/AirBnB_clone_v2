@@ -7,6 +7,8 @@ from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from models.amenity import Amenity
 from models.city import City
+from datetime import datetime
+from models.place import Place
 from models.state import State
 from models.user import User
 import pep8
