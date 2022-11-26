@@ -4,6 +4,7 @@ import json
 from models import storage
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
+from models.state import State
 from models.user import User
 from os import path
 import pep8
@@ -81,14 +82,17 @@ class Test_FileStorage(unittest.TestCase):
         objs = storage
         new_base = BaseModel()
         new_user = User()
+        new_state = State()
         objs.new(new_base)
         objs.new(new_user)
+        objs.new(new_state)
         objs.save()
         save_text = ""
         with open("file.json", "r") as f:
             save_text = f.read()
             self.assertIn("BaseModel." + new_base.id, save_text)
             self.assertIn("User." + new_user.id, save_text)
+            self.assertIn("State." + new_state.id, save_text)
 
     def test_new(self):
         '''Test new method'''
