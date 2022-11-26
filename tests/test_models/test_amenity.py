@@ -32,3 +32,12 @@ class TestDocs(unittest.TestCase):
     def test_class_docstring(self):
         """Class docstring length"""
         self.assertTrue(len(Amenity.__doc__) >= 1)
+
+
+class TestAmenity(unittest.TestCase):
+    """Test the Amenity module"""
+
+    def test_class(self):
+        """Test the amenity class"""
+        self.assertEqual(Amenity.name, "")
+        self.assertTrue(issubclass(Amenity, BaseModel))
