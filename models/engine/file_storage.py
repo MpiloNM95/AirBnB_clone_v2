@@ -47,5 +47,5 @@ class FileStorage:
                     temp = keys.split('.')
                     new = classes[temp[0]](**values)
                     self.new(new)
-                    except FileNotFoundError:
-                        pass
+        except FileNotFoundError:
+            pass
