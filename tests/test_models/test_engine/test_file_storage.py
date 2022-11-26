@@ -100,13 +100,17 @@ class Test_FileStorage(unittest.TestCase):
          new_base = BaseModel(id="123", created_at="2022-11-25T19:54:58.883036"
                               updated_at="2022-11-25T19:54:58.883036")
          new_user = User()
+         new_state = State()
          new_file.new(new_base)
+         new_file.new(new_state)
          new_file.new(new_user)
          objs = new_file.all()
          key = new_base.__class__.__name__ + "." + new_base.__dict__["id"]
          key_user = new_user.__class__.__name__ + "." + new_user.__dict__["id"]
+         key_state = new_state.__class__.__name__ + "." + new_state.__dict__["id"]
          self.assertIn(key, objs)
          self.assertIn(key_user, objs)
+         self.assertIn(key_state, objs)
 
 if __name__ == '__main__':
     unittest.main()
