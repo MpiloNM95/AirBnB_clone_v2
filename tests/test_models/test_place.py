@@ -24,3 +24,7 @@ class TestDocs(unittest.TestCase):
     def setUpClass(cls):
         """Testing class"""
         cls.place_funcs = inspect.getmembers(Place, inspect.isfunction)
+
+    def test_module_docstring(self):
+        """module docstring length"""
+        self.assertTrue(len(Place.__doc__) >= 1)
