@@ -24,3 +24,7 @@ class TestDocs(unittest.TestCase):
     def setUpClass(cls):
         """Testing class"""
         cls.amenity_funcs = inspect.getmembers(Amenity, inspect.isfunction)
+
+    def test_module_docstring(self):
+        """module docstring length"""
+        self.assertTrue(len(Amenity.__doc__) >= 1)
