@@ -15,3 +15,12 @@ class Test_pep8(unittest.TestCase):
         result = pep8style.check_files(['models/city.py'])
         self.assertEqual(result.total_errors, 0,
                 "Found code style errors (and warnings).")
+
+
+class TestDocs(unittest.TestCase):
+    """Base model document tests"""
+
+    @classmethod
+    def setUpClass(cls):
+        """Testing class"""
+        cls.city_funcs = inspect.getmembers(City, inspect.isfunction)
