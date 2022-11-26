@@ -73,6 +73,13 @@ class Test_FileStorage(unittest.TestCase):
             new_file = FileStorage()
             new_base = BaseModel(id="123", created_at="2022-11-23T19:03:10.78",
                                  updated_at="2022-11-23T19:03:10.78")
+            new_city = City()
+            new_file.new(new_base)
+            new_file.new(new_city)
+            new_file.save()
+        with open("file.json", "r") as f:
+            obj = json.load(f)
+        self.assertEqual(type(obj), dict)
 
     def test_reload_with_arg(self):
         with self.assertRaises(TypeError):
