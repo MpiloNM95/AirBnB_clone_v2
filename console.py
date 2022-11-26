@@ -2,6 +2,7 @@
 """Console that contains the entry point of the comm interpreter"""
 import cmd
 import json
+from models.amenity import Amenity
 from models.base_model import BaseModel
 from models.city import City
 from model.state import State
@@ -18,7 +19,7 @@ class HBNBCommand(cmd.Cmd):
     an empty line + ENTER doesn't execute anything
     """
     prompt = "(hbnb) "
-    classes = ["BaseModel", "User", "State", "City"]
+    classes = ["BaseModel", "User", "State", "City", "Amenity"]
     attributes = ["updated_at", "created_at", "id"]
     specs = ["\'", "\""]
 
