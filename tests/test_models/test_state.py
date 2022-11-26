@@ -32,3 +32,11 @@ class TestDocs(unittest.TestCase):
     def test_class_docstring(self):
         """Class docstring length"""
         self.assertTrue(len(State.__doc__) >= 1)
+
+
+class TestState(unittest.TestCase):
+    """test State module"""
+    def test_class(self):
+        """test class"""
+        self.assertEqual(State.name, "")
+        self.assertTrue(State, BaseModel)
