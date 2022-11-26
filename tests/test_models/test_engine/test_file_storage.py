@@ -2,6 +2,7 @@
 """test the FileStorage method"""
 import json
 from models import storage
+from models.amenity import Amenity
 from models.base_model import BaseModel
 from models.city import City
 from models.engine.file_storage import FileStorage
@@ -92,10 +93,12 @@ class Test_FileStorage(unittest.TestCase):
         new_user = User()
         new_state = State()
         new_city = City()
+        new_city = Amenity()
         objs.new(new_base)
         objs.new(new_user)
-        objs.new(new_city)
         objs.new(new_state)
+        objs.new(new_city)
+        objs.new(new_amenity)
         objs.save()
         save_text = ""
         with open("file.json", "r") as f:
@@ -104,6 +107,7 @@ class Test_FileStorage(unittest.TestCase):
             self.assertIn("User." + new_user.id, save_text)
             self.assertIn("State." + new_state.id, save_text)
             self.assertIn("City." + new_city.id, save_text)
+            self.assertIn("Amenity." + new_amenity.id, save_text)
 
     def test_new(self):
         '''Test new method'''
