@@ -91,8 +91,10 @@ class Test_FileStorage(unittest.TestCase):
         new_base = BaseModel()
         new_user = User()
         new_state = State()
+        new_city = City()
         objs.new(new_base)
         objs.new(new_user)
+        objs.new(new_city)
         objs.new(new_state)
         objs.save()
         save_text = ""
@@ -101,22 +103,27 @@ class Test_FileStorage(unittest.TestCase):
             self.assertIn("BaseModel." + new_base.id, save_text)
             self.assertIn("User." + new_user.id, save_text)
             self.assertIn("State." + new_state.id, save_text)
+            self.assertIn("City." + new_city.id, save_text)
 
     def test_new(self):
         '''Test new method'''
          new_file = FileStorage()
          new_base = BaseModel(id="123", created_at="2022-11-25T19:54:58.883036"
                               updated_at="2022-11-25T19:54:58.883036")
+         new_city = City()
          new_user = User()
          new_state = State()
          new_file.new(new_base)
+         new_file.new(new_city)
          new_file.new(new_state)
          new_file.new(new_user)
          objs = new_file.all()
          key = new_base.__class__.__name__ + "." + new_base.__dict__["id"]
+         key_2 = new_city.__class__.__name__ + "." + new_city.__dict__["id"]
          key_user = new_user.__class__.__name__ + "." + new_user.__dict__["id"]
          key_state = new_state.__class__.__name__ + "." + new_state.__dict__["id"]
          self.assertIn(key, objs)
+         self.assertIn(key_2, objs)
          self.assertIn(key_user, objs)
          self.assertIn(key_state, objs)
 
