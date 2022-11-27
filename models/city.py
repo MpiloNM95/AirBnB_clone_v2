@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""City module"""
+'''The City class that inherits from the BaseModel'''
+
 from models.base_model import BaseModel
 
-
 class City(BaseModel):
-    """Create the city module"""
-
-    state_id = ""
-    name = ""
+    '''This class takes care of all city related matters of the application'''
+    state_id = ''
+    name = ''
+    count = 0
