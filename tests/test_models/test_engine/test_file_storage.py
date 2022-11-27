@@ -74,8 +74,8 @@ class Test_FileStorage(unittest.TestCase):
         """tests the reload"""
         if not path.exists("file.json"):
             new_file = FileStorage()
-            new_base = BaseModel(id="123", created_at="2022-11-24T19:05:38.86",
-                                 updated_at="2022-11-24T19:05:38.86")
+            new_base = BaseModel(id="5835", created_at="2022-11-27T08:07:38.287029",
+                                 updated_at="2022-11-27T08:07:38.287071")
             new_city = City()
             new_file.new(new_base)
             new_file.new(new_city)
@@ -120,8 +120,8 @@ class Test_FileStorage(unittest.TestCase):
     def test_new(self):
         '''Test new method'''
         new_file = FileStorage()
-        new_base = BaseModel(id="123", created_at="2022-11-25T22:46:56.883036",
-                             updated_at="2022-11-T19:54:56.883036")
+        new_base = BaseModel(id="5835", created_at="2022-11-27T08:07:38.287029",
+                             updated_at="2022-11-27T08:07:38.287071")
         new_city = City()
         new_amenity = Amenity()
         new_user = User()
