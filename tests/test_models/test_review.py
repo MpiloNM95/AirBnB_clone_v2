@@ -32,3 +32,14 @@ class TestDocs(unittest.TestCase):
     def test_class_docstring(self):
         """Class docstring length"""
         self.assertTrue(len(Review.__doc__) >= 1)
+
+
+class TestReview(unittest.TestCase):
+    """Test Review Class"""
+
+    def test_review(self):
+        """test the reviewclass"""
+        self.assertEqual(Review.place_id, "")
+        self.assertEqual(Review.user_id, "")
+        self.assertEqual(Review.text, "")
+        self.assertTrue(issubclass(Review, Review))
