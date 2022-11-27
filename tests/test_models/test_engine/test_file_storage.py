@@ -8,6 +8,7 @@ from models.city import City
 from models.engine.file_storage import FileStorage
 from models.place import Place
 from models.state import State
+from models.review import Review
 from models.user import User
 from os import path
 import pep8
@@ -96,11 +97,13 @@ class Test_FileStorage(unittest.TestCase):
         new_place = Place()
         new_city = City()
         new_city = Amenity()
+        new_review = Review()
         objs.new(new_base)
         objs.new(new_user)
         objs.new(new_state)
         objs.new(new_city)
         objs.new(new_amenity)
+        objs.new(new_review)
         objs.save()
         save_text = ""
         with open("file.json", "r") as f:
@@ -111,6 +114,7 @@ class Test_FileStorage(unittest.TestCase):
             self.assertIn("Place." + new_place.id, save_text)
             self.assertIn("City." + new_city.id, save_text)
             self.assertIn("Amenity." + new_amenity.id, save_text)
+            self.assertIn("Review." + new_review.id, save_text)
 
     def test_new(self):
         '''Test new method'''
