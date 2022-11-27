@@ -1,155 +1,282 @@
 #!/usr/bin/python3
-"""Console that contains the entry point of the comm interpreter"""
+"""
+Command interpreter for AirBnB project
+
+"""
 import cmd
-import json
-from models.amenity import Amenity
+from models import storage
 from models.base_model import BaseModel
-from models.city import City
+from models.user import User
+from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-from model.state import State
-from models.user import User
-from models import storage
-
+from models.state import State
+from models.city import City
 
 class HBNBCommand(cmd.Cmd):
-    """
-    ALX Africa AirBnB clone console
-    contains the entry point of the comm interpreter
-    quit nd EOF to exit the program
-    help displays help
-    an empty line + ENTER doesn't execute anything
-    """
-    prompt = "(hbnb) "
-    classes = ["BaseModel", "User", "State", "City", 
-               "Amenity", "Place", "Review"]
-    attributes = ["updated_at", "created_at", "id"]
-    specs = ["\'", "\""]
+    prompt = '(hbnb) '
+    class_types = ['Basemodel', 'User', 'Amenity', 'Place', 'Review', 'State', 'City']
+    intro = ' Welcome to AirBnB CLI!\n Type "?" or "help" to list commands \n Type "quit" or "x" or "q" to exit the CLI'
 
-    def do_EOF(self, line):
-        """Exits on EOF"""
-        print()
-        return True
-
-    def do_quit(self, line):
-        """exits when typing quit"""
+    def do_quit(self, input):
+        '''Exit the command interpreter. Shorthand type x or q'''
+        print('Goodbye from the AirBnB CLI');
         return True
 
     def emptyline(self):
-        """passing emptyline do nothing"""
+        '''This method is called when an empty line + ENTER is pressed, to prevent execution of previous commands'''
         pass
 
-    def do_create(self, line):
-        """
-        Creates a new instance of BaseModel,
-        saves it (to the JSON file) and prints the id.
-        Ex: $ create BaseModel
-        """
-        if not line:
-            print("** class name missing **")
-            elif line not in self.classes:
-                print("** class doesn't exist **")
-            else: 
-                ew_item = eval(line)()
-                print(new_item.id)
-                new_item.save()
-
-    def do_show(self, line):
-        """Prints the string representation of an instance
-        based on the class name"""
-        comm = line.split()
-        if not line:
-            print("** class name missing **")
-            return
-        elif comm[0] not in self.classes:
-            print("** class doesn't exist **")
-            return
-        elif len(comm) == 1:
-            print("** instance id missing **")
-            return
-        new_item = "{}.{}".format(comm[0], comm[1])
-        if new_item not in storage.all().keys():
-            print("** no instance found **")
-            return
+    def default(self, input):
+        '''This method is called when an unknown command is sent'''
+        if input == 'x' or input == 'q':
+            return self.do_quit(input)
         else:
-            print("[{}] ({}) {}".format(comm[0],
-                                        comm[1], storage.all()[new_item]))
+            print('"{}" : Unknown command. Type "help" or "?" for more information'.format(input))
 
-    def do_destroy(self, line):
-        """method to delete an instance based on the class name and id"""
-        comm = line.split()
-        if not line:
-            print("** class name missing **")
-            return
-        elif comm[0] not in self.classes:
-            print("** class doesn't exist **")
-            return
-        elif len(comm) == 1:
-            print("** instance id missing **")
-            return
-        else:
-            new_item = "{}.{}".format(comm[0], comm[1])
-            if new_item not in storage.all():
-                print("** no instance found **")
-            else:
-                storage.all().pop(new_item)
-                storage.save()
 
-    def do_all(self, line):
-        """Prints all string representation of all instances"""
-        list_object = []
-        new_item = storage.all()
-        if line and line not in self.classes:
-            print("** class doesn't exist **")
-            return
+    def do_EOF(self, line):
+         '''Exit the command interpreter.'''
+         print('Goodbye from the AirBnB CLI')
+         return True
+
     
-    def do_update(self, line):
-        """Updates an instance based on the class name and id"""
-        comm = line.split()
-        if not line:
-            print("** class name missing **")
-        elif comm[0] not in self.classes:
-            print("** class doesn't exist **")
-            return
-        elif len(comm) == 1:
-            print("** instance id missing **")
-            return
-        elif comm[0] + "." + comm[1] not in storage.all().keys():
-            print("** no instance found **")
-            return
-        elif len(comm) == 2:
-            print("** attribute name missing **")
-            return
-        elif len(comm) == 3:
-            print("** value missing **")
-            return
-        else:
-            object = storage.all()
-            key = comm[0] + "." + comm[1]
-            if key in object:
-                if comm[2] not in self.attributes:
-                    if comm[3][0] in self.specs and comm[3][-1] in self.specs:
-                        setattr(object[key], comm[2], str(comm[3][1: -1]))
-                    else:
-                        setattr(object[key], comm[2], str(comm[3]))
-                    storage.save()
-            else:
-                print("** no instance found **")
-                return
+    def do_create(self, arg):
+        '''Creates a new instance of BaseModel'''
+        args = arg.split()
 
-    def do_count(self, line):
-        """
-        retrieve the number of instances of a class
-        usage: <class name>.count()
-        """
-        count = 0
-        objects = storage.all()
-        if line in self.classes:
-            for key in objects.keys():
-                search_class = key.split(".")
-                if search_class[0] == line:
-                    count += 1
-            print(count)
+        if len(args) < 1:
+            print('** class name missing **')
+        elif args[0] not in HBNBCommand.class_types:
+            print("** class doesn't exist **")
+        else:
+            for key in HBNBCommand.class_types:
+                if key == args[0]:
+                    new_obj = eval("{}()".format(args[0]))
+            new_obj.save()
+            print(new_obj.id)
+            
+    def do_show(self, arg):
+        '''Prints the string representation of
+        an instance based on the class name
+        '''
+        args = arg.split()
+        if len(args) < 1:
+            print*('** Missing class name **')
+        elif args[0] not in HBNBCommand.class_types:
+            print("** class doesn't exist **")
+        elif len(args) < 2:
+            print('** instance id missing **')
+        else:
+            arg_id = '{}.{}'.format(args[0], args[1])
+            all_objects = storage.all()
+            if arg_id in all_objects:
+                print(all_objects[arg_id])
+            else:
+                print('** no instance found **')
+            
+
+    def do_update(self, arg):
+        '''Updates an instance based on the class name
+        and id by adding or updating an attribute
+        
+        Args:
+            line(args): receives the commands:
+            <class name> <id> <attribute name> "<attribute value>"
+            Example: 'update User 1234-1234-1234 my_name "Jon"'
+        '''
+    
+        args = arg.split()
+        all_objects = storage.all()
+
+        if len(args) == 0:
+            print('**Missing class name**')
+        elif args[0] not in HBNBCommand.class_types:
+            print("** class doesn't exist**")
+        elif len(args) < 2:
+            print('** instance id missing **')
+        else:
+            key = args[0] + '.' + args[1]
+            if key in all_objects:
+                if len(args) < 3:
+                    print('** attribute name missing **')
+                elif len(args) < 4:
+                    print('** value missing **')
+                else:
+                    obj_dict = all_objects[key].to_dict()
+                    my_obj = all_objects[key]
+                    if args[2] in obj_dict:
+                        cast = type(my_obj.args[3])
+                        cast(args[3])
+                    setattr(my_obj, args[2], args[3])
+                    my_obj.save()
+            else:
+                print('** no instance found **')
+
+    def do_destroy(self, args):
+        '''Deletes an instance based on the class name and id'''
+        args = args.split()
+        all_objects = storage.all()
+
+        if len(args) < 1:
+            print('** Missing class name **')
+        elif args[0] not in HBNBCommand.class_types:
+            print("** classs doesn't exist**")
+        elif len(args) < 2:
+            print('** instance id missing **')
+        else:
+            key = args[0] + '.' + args[1]
+            if key in all_objects:
+                del all_objects[key]
+                storage.save()
+            else:
+                print('** no instance found **')
+                
+    def do_all(self, arg):
+        '''
+        Prints all representation of all instances
+        based on the class name
+        '''
+        list_instan = []
+        args = arg.split()
+        all_objects = storage.all()
+        if len(args) == 0:
+            for key in all_objects:
+                list_instan.append(all_objects[key].__str__())
+            print(list_instan)
+        else:
+            if args[0] in HBNBCommand.class_types:
+                for key in all_objects:
+                    if args[0] in key:
+                        list_instan.append(all_objects[key].__str__())
+                        print(list_instan)
+            else:
+                print("** class doesn't exist**") 
+
+    def do_User(self, arg):
+        '''Pass'''
+
+        CMD_MATCH = {
+            '.all()': self.do_all,
+            # 'count()': self.__count,
+            '.show()': self.do_show,
+            '.destroy()': self.do_destroy,
+            '.update()': self.do_update,
+            '.create()': self.do_create
+        }
+
+        if '(' and ')' in arg:
+            for key, value in CMD_MATCH.items():
+                if key == arg:
+                    value('User')    
+
+    def do_Amenity(self, arg):
+        '''Pass'''
+
+        CMD_MATCH = {
+            '.all()': self.do_all,
+            # 'count()': self.__count,
+            '.show()': self.do_show,
+            '.destroy()': self.do_destroy,
+            '.update()': self.do_update,
+            '.create()': self.do_create
+        }
+
+        if '(' and ')' in arg:
+            for key, value in CMD_MATCH.items():
+                if key == arg:
+                    value('Amenity')    
+
+    def do_City(self, arg):
+        '''Pass'''
+
+        CMD_MATCH = {
+            '.all()': self.do_all,
+            # 'count()': self.__count,
+            '.show()': self.do_show,
+            '.destroy()': self.do_destroy,
+            '.update()': self.do_update,
+            '.create()': self.do_create
+        }
+
+        if '(' and ')' in arg:
+            for key, value in CMD_MATCH.items():
+                if key == arg:
+                    value('City')    
+
+    def do_Place(self, arg):
+        '''Pass'''
+
+        CMD_MATCH = {
+            '.all()': self.do_all,
+            # 'count()': self.__count,
+            '.show()': self.do_show,
+            '.destroy()': self.do_destroy,
+            '.update()': self.do_update,
+            '.create()': self.do_create
+        }
+
+        if '(' and ')' in arg:
+            for key, value in CMD_MATCH.items():
+                if key == arg:
+                    value('Place')    
+    
+    def do_Review(self, arg):
+        '''Pass'''
+
+        CMD_MATCH = {
+            '.all()': self.do_all,
+            # 'count()': self.__count,
+            '.show()': self.do_show,
+            '.destroy()': self.do_destroy,
+            '.update()': self.do_update,
+            '.create()': self.do_create
+        }
+
+        if '(' and ')' in arg:
+            for key, value in CMD_MATCH.items():
+                if key == arg:
+                    value('Review')    
+
+    def do_State(self, arg):
+        '''Pass'''
+
+        CMD_MATCH = {
+            '.all()': self.do_all,
+            # 'count()': self.__count,
+            '.show()': self.do_show,
+            '.destroy()': self.do_destroy,
+            '.update()': self.do_update,
+            '.create()': self.do_create
+        }
+
+        if '(' and ')' in arg:
+            for key, value in CMD_MATCH.items():
+                if key == arg:
+                    value('State')    
+
+    def do_BaseModel(self, arg):
+        '''Pass'''
+
+        CMD_MATCH = {
+            '.all()': self.do_all,
+            # 'count()': self.__count,
+            '.show()': self.do_show,
+            '.destroy()': self.do_destroy,
+            '.update()': self.do_update,
+            '.create()': self.do_create
+        }
+
+        if '(' and ')' in arg:
+            for key, value in CMD_MATCH.items():
+                if key == arg:
+                    value('BaseModel')    
+
+    def do__count(self, cls, arg):
+        new_arg = arg.split('.')
+        if new_arg == 'count()':
+            cls.count()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
