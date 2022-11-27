@@ -6,6 +6,7 @@ from models.amenity import Amenity
 from models.base_model import BaseModel
 from models.city import City
 from models.place import Place
+from models.review import Review
 from model.state import State
 from models.user import User
 from models import storage
@@ -21,7 +22,7 @@ class HBNBCommand(cmd.Cmd):
     """
     prompt = "(hbnb) "
     classes = ["BaseModel", "User", "State", "City", 
-               "Amenity", "Place"]
+               "Amenity", "Place", "Review"]
     attributes = ["updated_at", "created_at", "id"]
     specs = ["\'", "\""]
 
