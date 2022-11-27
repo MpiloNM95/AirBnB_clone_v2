@@ -1,57 +1,49 @@
 #!/usr/bin/python3
-"""
-convert the dictionary representation to a JSON string
-"""
+"""Defines the FileStorage class."""
 import json
-from models.amenity import Amenity
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
 from models.city import City
 from models.place import Place
+from models.amenity import Amenity
 from models.review import Review
-from models.state import State
-from models.user import User
 
 
 class FileStorage:
-    """
-    serializes instances to a JSON file and deserializes
-    JSON file to instances
+    """Represent an abstracted storage engine.
+
+    Attributes:
+        __file_path (str): The name of the file to save objects to.
+        __objects (dict): A dictionary of instantiated objects.
     """
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        """returns the dictionary __objects"""
-        return self.__objects
+        """Return the dictionary __objects."""
+        return FileStorage.__objects
 
     def new(self, obj):
-        """sets in __objects the obj with key <obj class name>.id"""
-        key = str(obj.__class__.__name__) + "." + str(obj.id)
-        self.__objects[key] = obj
+        """Set in __objects obj with key <obj_class_name>.id"""
+        ocname = obj.__class__.__name__
+        FileStorage.__objects["{}.{}".format(ocname, obj.id)] = obj
 
     def save(self):
-        """serializes __objects to the JSON file (path: __file_path)"""
-        new = {}
-        for key, values in self.__objects.items():
-            new[key] = values.to_dict()
-
-        with open(self.__file_path, 'w') as f:
-            json.dump(new, f)
+        """Serialize __objects to the JSON file __file_path."""
+        odict = FileStorage.__objects
+        objdict = {obj: odict[obj].to_dict() for obj in odict.keys()}
+        with open(FileStorage.__file_path, "w") as f:
+            json.dump(objdict, f)
 
     def reload(self):
-        """
-        deserializes the JSON file to __objects
-        Only if the file exists, else do nothing, no exception
-        """
-        classes = {'BaseModel': BaseModel, 'User': User, 'City': City,
-                   'State': State, 'Amenity': Amenity, 'Place': Place,
-                   }
+        """Deserialize the JSON file __file_path to __objects, if it exists."""
         try:
-            with open(self.__file_path, 'r') as f:
-                objects = json.load(f)
-                for keys, values in objects.items():
-                    temp = keys.split('.')
-                    new = classes[temp[0]](**values)
-                    self.new(new)
+            with open(FileStorage.__file_path) as f:
+                objdict = json.load(f)
+                for o in objdict.values():
+                    cls_name = o["__class__"]
+                    del o["__class__"]
+                    self.new(eval(cls_name)(**o))
         except FileNotFoundError:
-            pass
+            return
