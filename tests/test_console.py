@@ -1,20 +1,20 @@
 #!/usr/bin/python3
-"""test the Console itself"""
-import unittest
-from console import HBNBCommand
-from models import storage
-from models.engine.file_storage import FileStorage
-from models.base_model import BaseModel
-from models.amenity import Amenity
-from models.city import City
-from datetime import datetime
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.user import User
+""" Unittest for the Console """
+
 import pep8
+import unittest
 from unittest.mock import patch
 from io import StringIO
-import cmd
+from models.engine.file_storage import FileStorage
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+from os import getenv, pathconf
+from console import HBNBCommand
+
 
 
