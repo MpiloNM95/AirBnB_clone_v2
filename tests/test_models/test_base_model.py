@@ -60,3 +60,10 @@ class BaseModel(unittest.TestCase):
         """ test the default """
         i = self.value()
         self.assertEqual(type(i), self.value)
+
+    def test_kwargs(self):
+        """ test the kwargs """
+        i = self.value()
+        copy = i.to_dict()
+        new = BaseModel(**copy)
+        self.assertFalse(new is i)
