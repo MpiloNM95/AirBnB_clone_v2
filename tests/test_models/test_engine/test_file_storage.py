@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""test the FileStorage method"""
+"""Module for testing file storage"""
 import json
 from models import storage
 from models.amenity import Amenity
