@@ -96,3 +96,9 @@ class BaseModel(unittest.TestCase):
         i = self.value()
         n = i.to_dict()
         self.assertEqual(i.to_dict(), n)
+
+    def test_kwargs_none(self):
+        """ test the kwargs equals none """
+        n = {None: None}
+        with self.assertRaises(TypeError):
+            new = self.value(**n)
