@@ -68,5 +68,12 @@ class TestDBStorage(unittest.TestCase):
         nb1 = self.cursor.execute("SELECT COUNT(*) FROM states")
         self.assertEqual(nb1 - nb, 0)
 
+    @unittest.skipIf(getenv("HBNB_TYPE_STORAGE") != 'db',
+                     "can't run if storage is file")
+    def test_reload(self):
+        """Test for reload()"""
+        obj = DBStorage()
+        self.assertTrue(obj._DBStorage__engine is not None)
+
 if __name__ == "__main__":
     unittest.main()
