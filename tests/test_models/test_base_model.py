@@ -67,3 +67,11 @@ class BaseModel(unittest.TestCase):
         copy = i.to_dict()
         new = BaseModel(**copy)
         self.assertFalse(new is i)
+
+    def test_kwargs_int(self):
+        """ tests the kwargs with an integer"""
+        i = self.value()
+        copy = i.to_dict()
+        copy.update({1: 2})
+        with self.assertRaises(TypeError):
+            new = BaseModel(**copy)
