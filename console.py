@@ -195,18 +195,18 @@ class HBNBCommand(cmd.Cmd):
             except Exception:
                 v.__dict__[my_list[2]] = my_list[3]
                 v.save()
-            except SyntaxError:
-                print("** class name missing **")
-            except NameError:
-                print("** class doesn't exist **")
-            except IndexError:
-                print("** instance id missing **")
-            except KeyError:
-                print("** no instance found **")
-            except AttributeError:
-                print("** attribute name missing **")
-            except ValueError:
-                print("** value missing **")
+        except SyntaxError:
+            print("** class name missing **")
+        except NameError:
+            print("** class doesn't exist **")
+        except IndexError:
+            print("** instance id missing **")
+        except KeyError:
+            print("** no instance found **")
+        except AttributeError:
+            print("** attribute name missing **")
+        except ValueError:
+            print("** value missing **")
 
     def count(self, line):
         """count the number of instances of a class
