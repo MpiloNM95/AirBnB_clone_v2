@@ -55,3 +55,8 @@ class BaseModel(unittest.TestCase):
             os.remove('file.json')
         except:
             pass
+
+    def test_default(self):
+        """ test the default """
+        i = self.value()
+        self.assertEqual(type(i), self.value)
