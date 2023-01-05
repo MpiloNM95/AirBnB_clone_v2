@@ -108,3 +108,13 @@ class BaseModel(unittest.TestCase):
         n = {'Name': 'test'}
         with self.assertRaises(KeyError):
             new = self.value(**n)
+
+    def test_id(self):
+        """ tests the id """
+        new = self.value()
+        self.assertEqual(type(new.id), str)
+
+    def test_created_at(self):
+        """ tests the created at """
+        new = self.value()
+        self.assertEqual(type(new.created_at), datetime.datetime)
