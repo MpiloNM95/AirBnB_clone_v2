@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Defines the HBNB console """
 import cmd
-import shlex import split
+from shlex import split
 import datetime import datetime
 from models.amenity import Amenity
 from models.base_model import BaseModel
