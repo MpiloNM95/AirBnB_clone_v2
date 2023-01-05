@@ -48,3 +48,12 @@ class TestDBStorage(unittest.TestCase):
 
     @unittest.skipIf(getenv("HBNB_TYPE_STORAGE") != 'db',
                      "can't run if storage is file")
+    def test_attributes_DBStorage(self):
+        """Tests for class attributes"""
+        self.assertTrue(hasattr(DBStorage, 'all'))
+        self.assertTrue(hasattr(DBStorage, 'new'))
+        self.assertTrue(hasattr(DBStorage, 'save'))
+        self.assertTrue(hasattr(DBStorage, 'reload'))
+        self.assertTrue(hasattr(DBStorage, 'delete'))
+        self.assertTrue(hasattr(DBStorage, '_DBStorage__engine'))
+        self.assertTrue(hasattr(DBStorage, '_DBStorage__session'))
