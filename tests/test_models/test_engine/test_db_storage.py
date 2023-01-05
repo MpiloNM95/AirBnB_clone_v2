@@ -57,3 +57,16 @@ class TestDBStorage(unittest.TestCase):
         self.assertTrue(hasattr(DBStorage, 'delete'))
         self.assertTrue(hasattr(DBStorage, '_DBStorage__engine'))
         self.assertTrue(hasattr(DBStorage, '_DBStorage__session'))
+
+    @unittest.skipIf(getenv("HBNB_TYPE_STORAGE") != 'db',
+                     "can't run if storage is file")
+    def test_new_DBStorage(self):
+        """Tests for new() method"""
+        nb = self.cursor.execute("SELECT COUNT(*) FROM states")
+        state = State(name="Oregon")
+        state.save()
+        nb1 = self.cursor.execute("SELECT COUNT(*) FROM states")
+        self.assertEqual(nb1 - nb, 0)
+
+if __name__ == "__main__":
+    unittest.main()
