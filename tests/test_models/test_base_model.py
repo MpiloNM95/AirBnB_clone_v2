@@ -49,3 +49,9 @@ class BaseModel(unittest.TestCase):
     def setUp(self):
         """ test the setup"""
         pass
+
+    def tearDown(self):
+        try:
+            os.remove('file.json')
+        except:
+            pass
