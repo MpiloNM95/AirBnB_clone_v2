@@ -46,3 +46,6 @@ class BaseModel(unittest.TestCase):
         self.name = 'BaseModel'
         self.value = BaseModel
 
+    def setUp(self):
+        """ test the setup"""
+        pass
