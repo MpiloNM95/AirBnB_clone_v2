@@ -35,3 +35,14 @@ class TestDocs(unittest.TestCase):
     def test_class_docstring(self):
         """Class docstring length"""
         self.assertTrue(len(BaseModel.__doc__) >= 1)
+
+
+class BaseModel(unittest.TestCase):
+    """ test the BaseModel class """
+
+    def __init__(self, *args, **kwargs):
+        """ Inicialization """
+        super().__init__(*args, **kwargs)
+        self.name = 'BaseModel'
+        self.value = BaseModel
+
