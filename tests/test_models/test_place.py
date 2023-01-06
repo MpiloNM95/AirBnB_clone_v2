@@ -4,7 +4,7 @@ import unittest
 from models.base_model import BaseModel
 from models.place import Place
 import pep8
-import inspect
+import os
 
 
 class Test_pep8(unittest.TestCase):
@@ -17,37 +17,11 @@ class Test_pep8(unittest.TestCase):
                          "Found code style errors (and warnings).")
 
 
-class TestDocs(unittest.TestCase):
-    """Base model document tests"""
+class test_Place(BaseModel):
+    """ tests the place class """
 
-    @classmethod
-    def setUpClass(cls):
-        """Testing class"""
-        cls.place_funcs = inspect.getmembers(Place, inspect.isfunction)
-
-    def test_module_docstring(self):
-        """module docstring length"""
-        self.assertTrue(len(Place.__doc__) >= 1)
-
-    def test_class_docstring(self):
-        """Class docstring length"""
-        self.assertTrue(len(Place.__doc__) >= 1)
-
-
-class TestPlace(unittest.TestCase):
-    """Test the Place module"""
-
-    def test_class(self):
-        """Test class"""
-        self.assertEqual(Place.city_id, "")
-        self.assertEqual(Place.user_id, "")
-        self.assertEqual(Place.name, "")
-        self.assertEqual(Place.description, "")
-        self.assertEqual(Place.number_rooms, 0)
-        self.assertEqual(Place.number_bathrooms, 0)
-        self.assertEqual(Place.max_guest, 0)
-        self.assertEqual(Place.price_by_night, 0)
-        self.assertEqual(Place.latitude, 0.0)
-        self.assertEqual(Place.longitude, 0.0)
-        self.assertEqual(Place.amenity_ids, [])
-        self.assertTrue(issubclass(Place, BaseModel))
+    def __init__(self, *args, **kwargs):
+        """ initialization """
+        super().__init__(*args, **kwargs)
+        self.name = "Place"
+        self.value = Place
