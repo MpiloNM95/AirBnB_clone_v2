@@ -40,3 +40,8 @@ class test_Place(BaseModel):
         """ tests name id """
         new = self.value()
         self.assertEqual(type(new.description), str)
+
+    def test_number_rooms(self):
+        """ test number of rooms """
+        new = self.value()
+        self.assertEqual(type(new.number_rooms), int)
