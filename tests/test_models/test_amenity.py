@@ -43,3 +43,7 @@ class test_Amenity(BaseModel):
         self.name = "Amenity"
         self.value = Amenity
 
+    def test_name2(self):
+        """ idk """
+        new = self.value()
+        self.assertEqual(type(new.name), str)
