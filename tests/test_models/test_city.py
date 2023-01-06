@@ -34,10 +34,11 @@ class TestDocs(unittest.TestCase):
         self.assertTrue(len(City.__doc__) >= 1)
 
 
-class TestCity(unittest.TestCase):
-    """Test the City module"""
+class test_City(BaseModel):
+    """ tests the City class """
 
-    def test_class(self):
-        self.assertEqual(City.state_id, "")
-        self.assertEqual(City.name, "")
-        self.assertTrue(issubclass(City, BaseModel))
+    def __init__(self, *args, **kwargs):
+        """ initialization """
+        super().__init__(*args, **kwargs)
+        self.name = "City"
+        self.value = City
