@@ -29,3 +29,8 @@ class TestState(unittest.TestCase):
         super().__init__(*args, **kwargs)
         self.name = "State"
         self.value = State
+
+    def test_name3(self):
+        """ tests name """
+        new = self.value()
+        self.assertEqual(type(new.name), str)
