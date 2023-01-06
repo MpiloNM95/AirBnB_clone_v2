@@ -46,3 +46,8 @@ class Test_user(unittest.TestCase):
         """ tests the first name """
         new = self.value()
         self.assertEqual(type(new.first_name), str)
+
+    def test_last_name(self):
+        """ tests the last name """
+        new = self.value()
+        self.assertEqual(type(new.last_name), str)
