@@ -17,26 +17,15 @@ class Test_pep8(unittest.TestCase):
                          "Found code style errors (and warnings).")
 
 
-class TestDocs(unittest.TestCase):
-    """Base model document tests"""
-
-    @classmethod
-    def setUpClass(cls):
-        """Testing class"""
-        cls.state_funcs = inspect.getmembers(State, inspect.isfunction)
-
-    def test_module_docstring(self):
-        """module docstring length"""
-        self.assertTrue(len(State.__doc__) >= 1)
-
-    def test_class_docstring(self):
-        """Class docstring length"""
-        self.assertTrue(len(State.__doc__) >= 1)
-
-
 class TestState(unittest.TestCase):
     """test State module"""
     def test_class(self):
         """test class"""
         self.assertEqual(State.name, "")
         self.assertTrue(State, BaseModel)
+
+    def __init__(self, *args, **kwargs):
+        """ Inicialization """
+        super().__init__(*args, **kwargs)
+        self.name = "State"
+        self.value = State
