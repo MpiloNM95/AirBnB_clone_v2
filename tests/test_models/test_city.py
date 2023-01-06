@@ -47,3 +47,8 @@ class test_City(BaseModel):
         """ tests the state id """
         new = self.value()
         self.assertEqual(type(new.state_id), str)
+
+    def test_name(self):
+        """ test the name """
+        new = self.value()
+        self.assertEqual(type(new.name), str)
