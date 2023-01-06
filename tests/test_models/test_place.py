@@ -30,3 +30,8 @@ class test_Place(BaseModel):
         """ tests city id """
         new = self.value()
         self.assertEqual(type(new.city_id), str)
+
+    def test_user_id(self):
+        """ tests user id """
+        new = self.value()
+        self.assertEqual(type(new.user_id), str)
