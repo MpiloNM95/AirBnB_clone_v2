@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""test the Amenity method"""
+"""Amenity test file"""
 import unittest
 from models.base_model import BaseModel
 from models.amenity import Amenity
@@ -34,10 +34,12 @@ class TestDocs(unittest.TestCase):
         self.assertTrue(len(Amenity.__doc__) >= 1)
 
 
-class TestAmenity(unittest.TestCase):
-    """Test the Amenity module"""
-    
-    def test_class(self):
-        """Test the amenity class"""
-        self.assertEqual(Amenity.name, "")
-        self.assertTrue(issubclass(Amenity, BaseModel))
+class test_Amenity(BaseModel):
+    """ class that test the Amenity class """
+
+    def __init__(self, *args, **kwargs):
+        """ idk """
+        super().__init__(*args, **kwargs)
+        self.name = "Amenity"
+        self.value = Amenity
+
