@@ -28,3 +28,8 @@ class test_review(BaseModel):
         """ """
         new = self.value()
         self.assertEqual(type(new.place_id), str)
+
+    def test_user_id(self):
+        """ """
+        new = self.value()
+        self.assertEqual(type(new.user_id), str)
