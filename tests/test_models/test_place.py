@@ -60,3 +60,8 @@ class test_Place(BaseModel):
         """ tests price_by_night """
         new = self.value()
         self.assertEqual(type(new.price_by_night), int)
+
+    def test_latitude(self):
+        """ tests latitude """
+        new = self.value()
+        self.assertEqual(type(new.latitude), float)
