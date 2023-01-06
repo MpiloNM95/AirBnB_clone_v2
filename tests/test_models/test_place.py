@@ -50,3 +50,8 @@ class test_Place(BaseModel):
         """ tests number of bathrooms """
         new = self.value()
         self.assertEqual(type(new.number_bathrooms), int)
+
+    def test_max_guest(self):
+        """ tests max_guest """
+        new = self.value()
+        self.assertEqual(type(new.max_guest), int)
