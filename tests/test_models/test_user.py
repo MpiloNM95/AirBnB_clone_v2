@@ -41,3 +41,8 @@ class Test_user(unittest.TestCase):
         super().__init__(*args, **kwargs)
         self.name = "User"
         self.value = User
+
+    def test_first_name(self):
+        """ tests the first name """
+        new = self.value()
+        self.assertEqual(type(new.first_name), str)
