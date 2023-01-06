@@ -25,3 +25,8 @@ class test_Place(BaseModel):
         super().__init__(*args, **kwargs)
         self.name = "Place"
         self.value = Place
+
+    def test_city_id(self):
+        """ tests city id """
+        new = self.value()
+        self.assertEqual(type(new.city_id), str)
