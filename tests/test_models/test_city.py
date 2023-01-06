@@ -42,3 +42,8 @@ class test_City(BaseModel):
         super().__init__(*args, **kwargs)
         self.name = "City"
         self.value = City
+
+    def test_state_id(self):
+        """ tests the state id """
+        new = self.value()
+        self.assertEqual(type(new.state_id), str)
