@@ -1,26 +1,14 @@
 #!/usr/bin/python3
-""" Defines the HBNB console """
+"""Defines the HBNB console."""
 import cmd
 from shlex import split
 from datetime import datetime
-from models.amenity import Amenity
-from models.base_model import BaseModel
-from models.city import City
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.user import User
 from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
-    """
-    AirBnB clone console
-    contains the entry point of the comm interpreter
-    quit and EOF to exit the program
-    help dispays help
-    an empty line + ENTER doesn't execute anything
-    """
+    """Defines the HolbertonBnB command interpreter."""
+
     prompt = "(hbnb) "
     __classes = {
         "BaseModel",
@@ -35,7 +23,7 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """Ignore empty spaces."""
         pass
-    
+
     def do_quit(self, line):
         """Quit command to exit the program."""
         return True
@@ -47,9 +35,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         """Usage: create <class> <key 1>=<value 2> <key 2>=<value 2> ...
-        Create  new class instance with given keys/values and prints its id. 
+        Create a new class instance with given keys/values and print its id.
         """
-
         try:
             if not line:
                 raise SyntaxError()
@@ -65,7 +52,7 @@ class HBNBCommand(cmd.Cmd):
                         value = eval(value)
                     except (SyntaxError, NameError):
                         continue
-                    kwargs[key] = value
+                kwargs[key] = value
 
             if kwargs == {}:
                 obj = eval(my_list[0])()
@@ -84,9 +71,9 @@ class HBNBCommand(cmd.Cmd):
         """Prints the string representation of an instance
         Exceptions:
             SyntaxError: when there is no args given
-            NameError: when there is no object that has the name
-            IndexError: when there  is no id given
-            KeyError: where ther is no valid id given
+            NameError: when there is no object taht has the name
+            IndexError: when there is no id given
+            KeyError: when there is no valid id given
         """
         try:
             if not line:
@@ -94,7 +81,7 @@ class HBNBCommand(cmd.Cmd):
             my_list = line.split(" ")
             if my_list[0] not in self.__classes:
                 raise NameError()
-            if len(my_list) <2:
+            if len(my_list) < 2:
                 raise IndexError()
             objects = storage.all()
             key = my_list[0] + '.' + my_list[1]
@@ -146,8 +133,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, line):
         """Usage: all or all <class> or <class>.all()
         Display string representations of all instances of a given class.
-        if no class is specified, displays all instantiated objects.
-        """
+        If no class is specified, displays all instantiated objects."""
         if not line:
             o = storage.all()
             print([o[k].__str__() for k in o])
@@ -226,11 +212,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def strip_clean(self, args):
-        """strips he argument nd return a string of command
+        """strips the argument and return a string of command
         Args:
             args: input list of args
         Return:
-            returns string of arguments
+            returns string of argumetns
         """
         new_list = []
         new_list.append(args[0])
